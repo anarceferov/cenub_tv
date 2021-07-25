@@ -4,14 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Back\UserController;
 use App\Http\Controllers\Back\AuthController;
 use App\Http\Controllers\Back\NewsController;
-use App\Http\Controllers\Back\BannerController;
 use App\Http\Controllers\Back\CategoryController;
+use App\Http\Controllers\Back\BannerController;
 use App\Http\Controllers\HomeController;
-
 
 Route::get('/' , [HomeController::class , 'home'])->name('home');
 Route::get('/news/{slug}' , [HomeController::class , 'news'])->name('news.inner');
 Route::get('/category/{cb_news_categories_id}' , [HomeController::class , 'category'])->name('category');
+Route::get('/searched' , [HomeController::class , 'searched'])->name('searched');
 Route::get('/tag/{news_id}' , [HomeController::class , 'tag'])->name('tag');
 
 Route::prefix('admin/')->middleware('isLogin')->group(function(){

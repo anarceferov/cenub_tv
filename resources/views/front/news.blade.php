@@ -1,4 +1,4 @@
-@extends('front2.partials.app')
+@extends('front.partials.app')
 @section('content')
 <!-- Main Area -->
 <div class="container">
@@ -13,7 +13,7 @@
                 @endforeach
                 <div class="d-flex title-icons">
                     <i class="far fa-clock"></i>
-                    <p>{{$news->tarix}}</p>
+                    <p>{{$news->created_at->isoFormat("LLL")}}</p>
                 </div>
                 <div class="d-flex title-icons">
                     <i class="fas fa-fire-alt"></i>
@@ -98,7 +98,7 @@
                                                         <h6>{{$news->title}}</h6></a>
                                                     <span>
                                <i class="fas fa-clock text-dark"></i>
-                               <span class="text-dark"> {{$news->tarix}} </span></span>
+                               <span class="text-dark">{{$news->created_at->isoFormat("LLL")}} </span></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -136,7 +136,7 @@
                                                         <h6>{{$news->title}}</h6></a>
                                                     <span>
                                <i class="fas fa-clock text-dark"></i>
-                               <span class="text-dark"> {{$news->tarix}} </span></span>
+                               <span class="text-dark"> {{$news->created_at->isoFormat("LLL")}} </span></span>
                                                 </div>
                                             </div>
                                         </div>

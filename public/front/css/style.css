@@ -98,7 +98,7 @@ a {
 }
 
 .dropdown-menu {
-    background-color: white;
+    background-color: red;
     border: none;
     top: 50px;
 }
@@ -113,7 +113,7 @@ a {
 }
 
 .navigation .navbar-nav .nav-link:hover {
-    color: rgba(255, 255, 255, .75);
+    color: black;
 }
 
 .single-box-home {

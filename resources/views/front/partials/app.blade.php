@@ -1,9 +1,15 @@
 <!DOCTYPE html>
-<div lang="en">
+<html lang="en">
     <head>
+       
+        
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="keywords" content="Xəbər, xeber, xəbərlər, xeberler, gündəm, gündem, gundem, gündəmdəkilər, gündemdekiler, cenub tv, cənub tv, news, new, information, maraqlı, maraqlı xəbərlər, maraqli xeberler, dava, qəza, deyişme, 18+, iqtisadi xeberler, iqtisadiyyat xeberleri, mədəniyyət, sosial, sosial mediya, təhsil, ən son xəbərlər, en son xeberler, dünya xeberleri, dünya xəbərləri, maraqlı araşdırmalar, arasdirma, bugunun xeberleri, bugünün xəbərləri, ən son hadise, hadisə, son xeberler, son xəbərlər, qəzet, beynəlxalq, Azərbaycan xəbərləri, Azerbaycan xeberleri, günün xeberleri, günün xəbərləri, bütün xəbərlər, bütün xeberler, olkede bas veren en son xeberler, dünyada baş verən ən son xəbərlər, bu gün, nə baş verir? Ne bas verir? Günün maraqlı xəbərləri, günün maraqli xeberleri, cebheden son xeberler, cəbhədən son xəbərlər, qaynar xəbərlər, koronavirus, yoluxma sayi, yoluxma sayı">
+        <meta name="description" content="Cənub TV – 2013-cü ildən fəaliyyət göstərən Azərbaycan informasiya saytı. Yerli və xarici xəbərləri eyni portalda birləşdirən Cənub Tv “Cənub xəbərləri” qəzetinin bazasında yaradılıb. Saytın əsas prioriteti sosial siyasi, iqtisadi, mədəni tarix, təhsil və s. sahələrindəki ən son baş verən xəbərləri ictimaiyyətə çatdırmaqdır. 
+Saytın baş redaktoru və təsisçisi jurnalist Zahir Əmənovdur. ">
+        
         <link
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -16,8 +22,11 @@
             integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
             crossorigin="anonymous"
         />
-        <link rel="stylesheet" href="{{asset('/front/resources/style.css')}}"/>
-        <title>Cənub Tv</title>
+       <link rel="stylesheet" href="{{asset('/front/resources/style.css')}}"/>
+       <link rel="icon" type="image/png" href="{{asset('./front/resources/images/favicon/favicon.png')}}"/>
+       
+        
+        <title>Cənub Tv - Regional Qəzet</title>
     </head>
 
     <!-- Modal -->
@@ -30,8 +39,10 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
 
             <div class="modal-content">
-                <input class="search-input" type="text" placeholder="Axtar">
-                <i class="fas fa-search"></i>
+                <form action="{{route('searched')}}" method="get">
+                    <input class="search-input" type="text" placeholder="Axtar" name="searched">
+                    <i class="fas fa-search"></i>
+                </form>
             </div>
         </div>
     </div>
@@ -50,7 +61,7 @@
                                     <div class="row">
                                         <div class="col-lg-3 col-md-3 text-center">
                       <span class="trending-title">
-                        <i class="fas fa-bolt"></i> Trending
+                        <i class="fas fa-bolt"></i> Trend
                       </span>
                                         </div>
                                         <div class="col-lg-9 col-md-9">
@@ -64,55 +75,16 @@
                                                 data-ride="carousel">
                                                 <div class=" carousel-inner
                             text-center text-lg-left text-md-left ">
-                                                    <div class="carousel-item active">
+                                                  @foreach($newNews as $newNew)
+                                                      <div class="carousel-item  @if($loop->first) active @endif">
                                                         <div class="post-content">
                                                             <p class="post-title title-small">
-                                                                <a href="#">
-                                                                    Ratcliffe to be Director of nation talent
-                                                                    Trump ignored</a
-                                                                >
+                                                                {{$newNew->title}}
+                                                                
                                                             </p>
                                                         </div>
                                                     </div>
-                                                    <div class="carousel-item">
-                                                        <div class="post-content">
-                                                            <p class="post-title title-small">
-                                                                <a href="#"
-                                                                >Nancy multi Chinese business woman
-                                                                    trying</a
-                                                                >
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="carousel-item">
-                                                        <div class="post-content">
-                                                            <p class="post-title title-small">
-                                                                <a href="#"
-                                                                >Harbour amid a Slowen down in singer city
-                                                                    screening</a
-                                                                >
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="carousel-item">
-                                                        <div class="post-content">
-                                                            <p class="post-title title-small">
-                                                                <a href="#"
-                                                                >Class property employ ancho red multi level
-                                                                    mansion</a
-                                                                >
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="carousel-item">
-                                                        <div class="post-content">
-                                                            <p class="post-title title-small">
-                                                                <a href="#"
-                                                                >The secret to moving this ancient sphinx
-                                                                    screening</a>
-                                                            </p>
-                                                        </div>
-                                                    </div>
+                                                    @endforeach
                                                 </div>
                                             </div>
                                         </div>
@@ -131,8 +103,7 @@
                 >
                     <ul class="top-info text-center">
                         <li>
-                            <i class="fas fa-calendar-check" aria-hidden="true"></i> June
-                            15, 2021
+                            <i class="fas fa-calendar-check" aria-hidden="true"></i>  {{now()->isoFormat("LLL")}}
                         </li>
                     </ul>
                 </div>
@@ -143,14 +114,24 @@
 
 
     <!-- Banner -->
-    <div class="container topbanner my-3">
-        <div class="row mt-3">
-            <div class="col-lg-6 col-md-6 align-self-center mx-auto">
+    <div class="container topbanner my-3 align-items-center">
+        <div class="row mt-3 ">
+            <div class="col-xl-6 col-lg-6 col-md-6 ">
                 <div class="logo-area">
-                    <img src="{{asset('/front/resources/images/logo.png/')}}" alt=""/>
+                    <a href="{{route('home')}}"><img src="{{asset('/front/resources/images/logo.png/')}}" alt=""/></a>
                 </div>
             </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 align-self-center">
+                @foreach($banners as $banner)
+                @if($banner->position == 1)
+                <div class="banner-area">
+            <a href="{{$banner->link}}"><img src="{{asset($banner->image)}}" alt="" class="w-100" /></a>
+          </div>
+          @endif
+          @endforeach
+          
         </div>
+    </div>
     </div>
     <!-- End of Banner -->
 
@@ -168,12 +149,10 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="navbar-social">
-                <ul class="xs-social-list xs-social-list-v6 digiqole-social-list">
-                    <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                    <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                    <li><a href="#" target="_blank"><i class="fab fa-pinterest-p"></i></a></li>
-                    <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
-                    <li><a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+                <ul class="xs-social-list xs-social-list-v6 ">
+                    <li><a href="https://www.facebook.com/CenubXeberleri" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="https://www.youtube.com/channel/UCXbi1LkjX611zHN-ELImaJQ" target="_blank"><i class="fab fa-youtube"></i></a></li>
+                 
                     <li>
                         <button class="search " data-toggle="modal" data-target="#exampleModalCenter"><i
                                 class="fas fa-search"></i></button>
@@ -182,12 +161,9 @@
             </div>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    @foreach($frd['menu'] as $menu)
+                    @foreach($categories as $menu)
                         <li class="nav-item active">
-                            <a class="nav-link" href="{{route('category',$menu->id)}}"
-                            >{{$menu->name}}
-                                {{--                            <span class="sr-only">(current)</span>--}}
-                            </a>
+                            <a class="nav-link" href="{{route('category',$menu->id)}}">{{$menu->name}}</a>
                         </li>
                     @endforeach
                 </ul>
@@ -201,9 +177,13 @@
 <!-- Middle banner -->
     <div class="container middle-banner">
         <div class="row my-5">
-            <div class="col-xl-12 col-lg-12 col-md-12 d-lg-block d-xl-block d-md-block d-none">
-                <img src="{{asset('/front/resources/images/content_banner_3.png')}}" alt="Logo" class="w-100"/>
+                           @foreach($banners as $banner)
+                @if($banner->position == 2)
+            <div class="col-xl-12 col-lg-12 col-md-12 d-lg-block d-xl-block d-md-block d-none middle-banner-area">
+                <a href="{{$banner->link}}" target="_blank"><img src="{{asset($banner->image)}}" alt="Logo" class="w-100"/></a>
             </div>
+            @endif
+            @endforeach
         </div>
     </div>
     <!-- End of banner -->
@@ -217,34 +197,32 @@
                             <span>Haqqımızda</span>
                         </h3>
                         <div class="textwidget">
-                            <p>Hidden Hills property with mountain and city view boast nine bedrooms including a master
-                                suite with private terrace and an entertainment. wing which includes a 20-seat
-                                theater.</p>
+                            <p>Cənub TV – 2013-cü ildən fəaliyyət göstərən Azərbaycan informasiya saytı. Yerli və xarici xəbərləri eyni portalda birləşdirən Cənub Tv “Cənub xəbərləri” qəzetinin bazasında yaradılıb. Saytın əsas prioriteti sosial siyasi, iqtisadi, mədəni tarix, təhsil və s. sahələrindəki ən son baş verən xəbərləri ictimaiyyətə çatdırmaqdır. 
+Saytın baş redaktoru və təsisçisi jurnalist Zahir Əmənovdur. 
+</p>
                         </div>
                     </div>
                     <div class="widget_text footer-left-widget">
                         <div class="textwidget custom-html-widget">
                             <ul class="footer-info">
                                 <li>
-                                    <i class="fa fa-home"></i> 15 Cliff St, New York NY 10038, USA
+                                    <i class="fa fa-phone"></i> <a href="tel:+994503227523" style="color:white">+994 50 322 75 23</a>
+                                </li>
+                                 <li>
+                                    <i class="fa fa-phone"></i> <a href="tel:+994703227523" style="color:white">+994 70 322 75 23</a>
                                 </li>
                                 <li>
-                                    <i class="fa fa-phone"></i> +1 212-602-9641
-                                </li>
-                                <li>
-                                    <i class="fa fa-envelope"></i>info@example.com
+                                    <i class="fa fa-envelope"></i><a href="mailto:cenubzahir@mail.ru" style="color:white">cenubzahir@mail.ru</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div class="footer-left-widget">
                         <div class="footer-social">
-                            <ul class="xs-social-list xs-social-list-v6 digiqole-social-list">
-                                <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#" target="_blank"><i class="fab fa-pinterest-p"></i></a></li>
-                                <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
-                                <li><a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+                            <ul class="xs-social-list xs-social-list-v6">
+                                <li><a href="https://www.facebook.com/CenubXeberleri" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="https://www.youtube.com/channel/UCXbi1LkjX611zHN-ELImaJQ" target="_blank"><i class="fab fa-youtube"></i></a></li>
+                               
                             </ul>
                         </div><!-- Footer social end -->
                     </div>
@@ -272,7 +250,7 @@
                                                     </h6>
                                                     <div class="post-meta"><span class="post-date"><i
                                                                 class="fa fa-clock"
-                                                                aria-hidden="true"></i>{{$news->tarix}}</span>
+                                                                aria-hidden="true"></i>{{$news->created_at->isoFormat("LLL")}}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -284,12 +262,16 @@
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-6 col-12 my-3">
+                    @foreach($banners as $banner)
+                    @if($banner->position == 3)
                     <div class="footer-widget footer-right-widget">
-                        <a href="#">
-                            <img width="285" height="375" src="{{asset('front/img/widget_banner.png')}}"
+                        <a href="{{$banner->link}}">
+                            <img width="285" height="375" src="{{asset($banner->image)}}"
                                  class="image wp-image-3495  attachment-full size-full" alt="Footer ads"
                                  style="max-width: 100%; height: auto;"/></a>
                     </div>
+                    @endif
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -301,18 +283,18 @@
     <div class="copy-right">
         <div class="container">
             <div class="row">
-                <div class="col-xl-11 col-lg-11 align-items-xl-center align-items-lg-center">
+                <div class="col-xl-12 col-lg-12  justify-content-center">
                     <div class="copyright-text text-center">
-                        <p> © 2021, Digiqole - News Magazine WordPress Theme. All rights reserved.</p>
+                        <p> Copyright © 2021 <a href="http://deirvlon.com/az#service" style="color:white">Deirvlon Technologies.</a>  All rights are reserved.</p>
                     </div>
-                </div>
-                <div class="col-xl-1 col-lg-1">
-                    <a href="#" style="text-decoration: none">
+                     
                         <div class="backTo">
-                            <i class="fas fa-arrow-up"></i>
+                            <a href="#" style="text-decoration: none">
+                            <i class="fas fa-arrow-up"></i> </a>
                         </div>
-                    </a>
+                   
                 </div>
+              
             </div>
         </div>
     </div>
