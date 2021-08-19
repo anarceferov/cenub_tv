@@ -11,11 +11,17 @@ use Illuminate\Support\Facades\File;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    function __construct()
+    {
+        app()->make(\Spatie\Permission\PermissionRegistrar::class)->forgetCachedPermissions();
+        $this->middleware('permission:category-index', ['only' => ['index']]);
+        $this->middleware('permission:category-create', ['only' => ['create']]);
+        $this->middleware('permission:category-store', ['only' => ['store']]);
+        $this->middleware('permission:category-edit', ['only' => ['edit']]);
+        $this->middleware('permission:category-update', ['only' => ['update']]);
+        $this->middleware('permission:category-destroy', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $categories = NewsCategory::orderByDesc('id')->paginate(5);

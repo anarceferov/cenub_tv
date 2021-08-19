@@ -15,6 +15,16 @@ use Illuminate\Support\Facades\File;
 
 class NewsController extends Controller
 {
+    function __construct()
+    {
+        app()->make(\Spatie\Permission\PermissionRegistrar::class)->forgetCachedPermissions();
+        $this->middleware('permission:news-index', ['only' => ['index']]);
+        $this->middleware('permission:news-create', ['only' => ['create']]);
+        $this->middleware('permission:news-store', ['only' => ['store']]);
+        $this->middleware('permission:news-edit', ['only' => ['edit']]);
+        $this->middleware('permission:news-update', ['only' => ['update']]);
+        $this->middleware('permission:news-destroy', ['only' => ['destroy']]);
+    }
 
     public function index()
     {

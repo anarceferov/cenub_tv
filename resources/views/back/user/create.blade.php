@@ -36,6 +36,25 @@
                         <input type="password" name="password_confirmation" class="form-control" placeholder="Şifrə doğrula...">
                     </div>
                 </div><hr>
+
+                <div class="form-group">
+                    <h3 class="text-center  badge-danger badge-pill"> Permissions</h3>
+                </div>
+
+                <div class="form-group">
+                    <a href="" class="btn btn-secondary btn-sm">Select ALL</a>
+                </div>
+                
+                <div class="form-check">
+                    @foreach($permission as $value)
+                    <input type="checkbox" value="{{$value->name}}" class="form-check-input" id="{{ $value->id }}" name="permission[]">
+                    <label class="form-check-label" for="{{ $value->id }}"> {{ $value->name }} </label>
+                    <br>
+                    @endforeach
+                </div>
+
+                <hr>
+
                 <button class="btn btn-success btn-block" type="submit"><i class="fa fa-plus"></i> Əlavə Et</button>
             </form>
         </div>
@@ -44,14 +63,20 @@
 
 @endsection
 @section('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+
 <script>
-    function myFunction() {
-      var x = document.getElementsById("password");
-      if (x.type === "password") {
-        x.type = "text";
-      } else {
-        x.type = "password";
-      }
-    }
+    $('.btn-secondary').click(function(e) {
+        e.preventDefault()
+        $('.form-check-input').prop('checked', true);
+    })
 </script>
+@endsection
+
+@section('css')
+<style>
+    hr {
+        border: 1px solid black;
+    }
+</style>
 @endsection

@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
             NewsCategoriesSeeder::class,
             NewsSeeder::class,
             TagSeeder::class,
+            PermissionsSeeder::class,
         ]);
     }
 }

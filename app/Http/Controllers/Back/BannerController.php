@@ -10,11 +10,17 @@ use App\Models\Banner;
 
 class BannerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    function __construct()
+    {
+        app()->make(\Spatie\Permission\PermissionRegistrar::class)->forgetCachedPermissions();
+        $this->middleware('permission:reklam-index', ['only' => ['index']]);
+        $this->middleware('permission:reklam-create', ['only' => ['create']]);
+        $this->middleware('permission:reklam-store', ['only' => ['store']]);
+        $this->middleware('permission:reklam-edit', ['only' => ['edit']]);
+        $this->middleware('permission:reklam-update', ['only' => ['update']]);
+        $this->middleware('permission:reklam-destroy', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $banners = Banner::all();
