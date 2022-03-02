@@ -24,20 +24,20 @@ class UserController extends Controller
         $this->middleware('permission:user-destroy', ['only' => ['destroy']]);
     }
 
-    public function index()
+    function index()
     {
         $users = User::orderBydesc('id')->paginate(10);
 
         return view('back.user.list', compact('users'));
     }
 
-    public function create()
+    function create()
     {
         $permission = Permission::get();
         return view('back.user.create', compact('permission'));
     }
 
-    public function store(UserCreate $request)
+    function store(UserCreate $request)
     {
         $user = new User;
         $user->name       = $request->name;
@@ -58,16 +58,15 @@ class UserController extends Controller
             }
         }
 
-
         return redirect()->route('users.index')->withSuccess('İstifadəçi əlavə edildi...');
     }
 
-    public function show($id)
+    function show($id)
     {
         //
     }
 
-    public function edit($id)
+    function edit($id)
     {
         $user = user::find($id) ?? abort(403, 'İstifadəçi Tapılmadı...');
         $permission = Permission::get();
@@ -76,12 +75,12 @@ class UserController extends Controller
         return view('back.user.edit', compact('user', 'permission', 'userPermissions'));
     }
 
-    public function update(UserUpdate $request, $id)
+    function update(UserUpdate $request, $id)
     {
         $user = User::find($id) ?? abort(403, 'İstifadəçi Tapılmadı...');
         $user->name       = $request->name;
         $user->email      = $request->email;
-        if(!empty($request->input('password'))){
+        if (!empty($request->input('password'))) {
             $user->password   = Hash::make($request->password);
         }
         $user->save();
@@ -111,7 +110,7 @@ class UserController extends Controller
         return redirect()->route('users.index')->withSuccess('Uğurla Yeniləndi...');
     }
 
-    public function destroy($id)
+    function destroy($id)
     {
         User::find($id)->delete();
         DB::table("model_has_permissions")->where('model_id', $id)->delete();
